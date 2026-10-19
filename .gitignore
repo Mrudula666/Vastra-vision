@@ -13,3 +13,8 @@ models/
 # OS
 .DS_Store
 Thumbs.db
+
+# Pipeline working folders (only accepted images and metadata are shared)
+data/candidates/
+data/rejected/
+data/review/

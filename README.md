@@ -27,6 +27,37 @@ vastra-vision/
   src/              app and helper code (Gradio demo later)
 ```
 
+## Collecting images
+
+Run these on your own computer from the repo root:
+
+```
+pip install -r requirements.txt
+```
+
+**1. Automatic download from open sources** (Wikimedia Commons, The Met, Cleveland Museum; openly licensed images only):
+
+```
+python src/collect_images.py              # all styles
+python src/collect_images.py --style mangalagiri --max 80
+```
+
+Then open each `data/images/<style>/` folder, delete wrong or fake images, and run:
+
+```
+python src/collect_images.py --clean
+```
+
+Commons images are tagged `type=to_check`: change them to `artifact` or `craft` in `metadata.csv` while reviewing.
+
+**2. Your own saree videos** (the biggest source). Record a slow 30–60 second video of one saree (full view, border, pallu, close-ups), then:
+
+```
+python src/video_to_frames.py saree1.mp4 --style mangalagiri --saree-id mang_s01
+```
+
+One minute of video gives about 40–60 sharp images. Use a new `--saree-id` for every saree, so frames of the same saree stay together when the data is split for training.
+
 ## Project rules
 
 1. One domain at a time: Vastra first, then Abharana, then Kala.
